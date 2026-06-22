@@ -13,11 +13,10 @@ Answer each question in 3 to 5 sentences. Be specific and honest about what actu
 Document at least 3 bugs you found. Add rows as needed.
 
 | Input | Expected Behavior | Actual Behavior | Console Output / Error |
-|-------|-------------------|-----------------|------------------------|
-| | | | |
-| | | | |
-| | | | |
-
+|------------|-------------------|-----------------|---------------|
+| Guess of 50 (secret: 77) | "Too Low" | "Too High" | none |
+| Correct guess after reset | "You Win!" | "Go Higher" | none |
+| Typed "five" | "Use digits not words" | "That is not a number" | none |
 ---
 
 ## 2. How did you use AI as a teammate?
