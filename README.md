@@ -25,28 +25,40 @@ It wrote the code, ran away, and now the game is unplayable.
 
 ## 📝 Document Your Experience
 
-- [ ] Describe the game's purpose.
-- [ ] Detail which bugs you found.
-- [ ] Explain what fixes you applied.
+The game is a number guessing game where the player tries to guess a secret number within a limited number of attempts. The player receives hints after each guess telling them to go higher or lower. The score decreases with each wrong guess and increases when the player wins.
+
+**Bugs Found:**
+1. Hints were reversed — the game was converting the secret number to a string on even attempts, causing incorrect comparisons between integers and strings
+2. New game button was not resetting all state — score, status, and history were carrying over from the previous game
+3. Input parsing gave a misleading error message — typing a word like "five" returned "That is not a number" when it should explain to use digits instead
+
+**Fixes Applied:**
+1. Removed the string conversion logic in app.py and always pass the integer secret directly to check_guess()
+2. Updated the new game reset to clear all session state including score, status, and history
+3. Improved the error message in logic_utils.py to say "Please enter a number using digits (e.g. 5, not 'five')"
+4. Refactored all core logic functions out of app.py and into logic_utils.py where they belong
 
 ## 📸 Demo Walkthrough
 
-Describe your fixed game in numbered steps so a reader can follow along without watching a video:
-
-1. <!-- Describe this step -->
-2. <!-- Describe this step -->
-3. <!-- Describe this step -->
-4. <!-- Describe this step -->
-5. <!-- Add more steps as needed -->
-
-**Screenshot** *(optional)*: <!-- Insert a screenshot of your fixed, winning game here -->
+1. User opens the game and selects Normal difficulty (range 1 to 100, 8 attempts)
+2. User enters a guess of 40 — game returns "📈 Go HIGHER!" and score decreases by 5
+3. User enters a guess of 80 — game returns "📉 Go LOWER!" and score decreases by 5
+4. User enters a guess of 60 — game returns "📈 Go HIGHER!" and score decreases by 5
+5. User enters a guess of 70 — game returns "📈 Go HIGHER!" and score decreases by 5
+6. User enters a guess of 77 — game returns "🎉 Correct!" and score increases with win bonus
+7. Game ends and displays final score — clicking New Game resets everything cleanly
 
 ## 🧪 Test Results
 
 ```
-# Paste your pytest output here, e.g.:
-# pytest tests/
-# ========================= X passed in 0.XXs =========================
+platform darwin -- Python 3.11.1, pytest-8.4.2, pluggy-1.6.0
+rootdir: /Users/ammarmalick/Documents/ai110-module1show-gameglitchinvestigator-starter
+plugins: anyio-4.12.1
+collected 11 items
+
+tests/test_game_logic.py ...........                    [100%]
+
+======================================== 11 passed in 0.01s =========================================
 ```
 
 ## 🚀 Stretch Features
