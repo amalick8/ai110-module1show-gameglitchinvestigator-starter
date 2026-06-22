@@ -1,6 +1,7 @@
 import pytest
 from logic_utils import check_guess, parse_guess, update_score, get_range_for_difficulty
 
+
 # --- check_guess tests ---
 
 def test_guess_too_low():
